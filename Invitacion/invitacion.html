@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis XV Años | Invitación Especial</title>
+  
+  <!-- Fuentes Elegantes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- VARIABLES DE COLOR Y ESTILO --- */
+    :root {
+      --gold: #dfb76c;
+      --gold-light: #f3e5ab;
+      --gold-dark: #b8860b;
+      --bg-dark: #6c376e;
+      --card-bg: rgba(20, 20, 28, 0.75);
+      --text: #e6e6e6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      /* Fondo con gradiente y estrellas sutiles */
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(223, 183, 108, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.08) 0%, transparent 40%);
+    }
+
+    /* --- PANTALLA INICIAL: SOBRE INTERACTIVO --- */
+    #envelope-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-dark);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease-in-out, visibility 1s;
+    }
+
+    .envelope {
+      width: 280px;
+      height: 180px;
+      background: #1a1a24;
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px rgba(223, 183, 108, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .wax-seal {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #000;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      border: 2px solid var(--gold-light);
+    }
+
+    .open-text {
+      margin-top: 25px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      color: var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    /* --- TARJETA PRINCIPAL (INVITACIÓN) --- */
+    .card-container {
+      max-width: 450px;
+      width: 90%;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border: 1px solid rgba(223, 183, 108, 0.3);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px 25px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-out 0.3s;
+    }
+
+    /* Aparecer tarjeta tras abrir sobre */
+    .card-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .monogram {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: silver;
+    }
+
+    h1.name {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 4.5rem;
+      color: (#7DF527);
+      line-height: 1;
+      margin: 15px 0;
+      text-shadow: 0 0 15px rgba(192, 4, 4, 0.3);
+    }
+
+    p.quote {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: goldenrod;
+      line-height: 1.5;
+      margin: 20px 0;
+      padding: 0 10px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .divider span {
+      padding: 0 10px;
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    /* --- DETALLES Y MAPAS --- */
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .event-info {
+      margin-bottom: 25px;
+    }
+
+    .event-info p {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .btn-map {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(223, 183, 108, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 10px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-map:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* --- CONTADOR --- */
+    .countdown {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      background: rgba(0,0,0,0.3);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .time-box {
+      flex: 1;
+    }
+
+    .time-box .number {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .time-box .label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: #888;
+      letter-spacing: 1px;
+    }
+
+    /* --- FORMULARIO & WHATSAPP --- */
+    .form-box {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(223, 183, 108, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-whatsapp {
+      width: 100%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. PANTALLA DE APERTURA (SOBRE) -->
+  <div id="envelope-wrapper">
+    <div class="envelope" onclick="openEnvelope()">
+      <div class="wax-seal">XV</div>
+    </div>
+    <div class="open-text">TOCA PARA ABRIR LA INVITACIÓN</div>
+  </div>
+
+  <!-- 2. CONTENIDO PRINCIPAL -->
+  <div class="card-container" id="main-card">
+    
+    <div class="monogram">Nos complace invitarle a los</div>
+    <div class="subtitle">XV</div>
+    
+    <!-- CAMBIA EL NOMBRE AQUÍ -->
+    <h1 class="name">Maylin</h1>
+    
+    <p class="quote">
+      Acuérdate de tu Creador en los días de tu juventud, 
+      antes que vengan los días malos, y lleguen los años de los cuales digas: No tengo en ellos contentamiento;
+       <center>Eclesiastes 12 : 1</center>
+    </p>
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- FECHA Y CUENTA REGRESIVA -->
+    <div class="section-title">¿CUÁNDO?</div>
+    <p style="font-size: 1.1rem; font-weight: 600; color: #fff;">Jueves Día 30 de julio DE 2026</p>
+    <p style="font-size: 0.85rem; color: #aaa; margin-top: 3px;">Hora 3:00 PM</p>
+
+    <div class="countdown">
+      <div class="time-box"><span class="number" id="days">00</span><span class="label">Días</span></div>
+      <div class="time-box"><span class="number" id="hours">00</span><span class="label">Horas</span></div>
+      <div class="time-box"><span class="number" id="mins">00</span><span class="label">Min</span></div>
+      <div class="time-box"><span class="number" id="secs">00</span><span class="label">Seg</span></div>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- UBICACIÓN -->
+    <div class="section-title">¿DÓNDE?</div>
+    <div class="event-info">
+      <p style="font-size: 1rem; font-weight: 600; color: #fff;">salón Agustín (Zacualpa)</p>
+      <p style="color: #aaa; font-size: 0.85rem;">Av. Principal #123, Col. Centro</p>
+      
+      <!-- PON TU ENLACE DE GOOGLE MAPS AQUÍ -->
+      <a href="https://maps.app.goo.gl/M4qkCPbay8SbLya87" target="_blank" class="btn-map">
+        📍 VER EN GOOGLE MAPS
+      </a>
+    </div>
+
+    <!-- CÓDIGO DE VESTIMENTA -->
+    <div class="divider"><span>✦</span></div>
+    <div class="section-title">DRESS CODE</div>
+    <p style="font-size: 0.9rem; color: #fff;">Formal </p>
+    <p style="font-size: 0.75rem; color: #aaa; margin-top: 4px;">Reservado el color Verde para la festejada</p>
+
+    <!-- CONFIRMACIÓN POR WHATSAPP -->
+    <div class="divider"><span>✦</span></div>
+    <div class="section-title">CONFIRMA TU ASISTENCIA</div>
+    
+    <div class="form-box">
+      <div class="form-group">
+        <label for="name">Nombre Completo</label>
+        <input type="text" id="name" placeholder="Ej. Roberto Gómez" required>
+      </div>
+
+      <div class="form-group">
+        <label for="passes">Número de Asistentes</label>
+        <select id="passes">
+          <option value="1 persona">1 Persona (Asistiré solo/a)</option>
+          <option value="2 personas">2 Personas</option>
+          <option value="3 personas">3 Personas</option>
+          <option value="4 personas">4 Personas</option>
+        </select>
+      </div>
+
+      <button class="btn-whatsapp" onclick="sendWhatsApp()">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.705 1.754zm6.097-4.901l.374.222c1.472.873 3.153 1.336 4.873 1.337 5.234 0 9.493-4.259 9.495-9.492.001-2.536-.987-4.92-2.782-6.714-1.794-1.795-4.179-2.783-6.715-2.784-5.235 0-9.493 4.258-9.495 9.492-.001 1.782.493 3.518 1.43 5.031l.244.391-1.002 3.662 3.756-.983z"/>
+        </svg>
+        Confirmar por WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    /* ===================================================
+       CONFIGURACIÓN DEL EVENTO
+    =================================================== */
+    // 1. Pon tu número de WhatsApp aquí (Incluye código de país, ej: 52 para México + 10 dígitos)
+    const whatsappNumber = "52 1 962 240 0207";
+
+    // 2. Fecha del evento para la cuenta regresiva: Año, Mes (0-11, ej: Noviembre es 10), Día, Hora, Minutos
+    const targetDate = new Date(2026, 7, 0, 3, 0, 0).getTime();
+
+    /* ===================================================
+       LÓGICA DEL SOBRE INTERACTIVO
+    =================================================== */
+    function openEnvelope() {
+      const envelopeWrapper = document.getElementById('envelope-wrapper');
+      const mainCard = document.getElementById('main-card');
+
+      envelopeWrapper.style.opacity = '0';
+      envelopeWrapper.style.visibility = 'hidden';
+
+      setTimeout(() => {
+        mainCard.classList.add('visible');
+      }, 300);
+    }
+
+    /* ===================================================
+       LÓGICA DE LA CUENTA REGRESIVA
+    =================================================== */
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference < 0) {
+        clearInterval(countdownInterval);
+        document.querySelector('.countdown').innerHTML = "<p style='color:var(--gold); grid-column:span 4;'>¡HOY ES EL GRAN DÍA!</p>";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('mins').innerText = String(mins).padStart(2, '0');
+      document.getElementById('secs').innerText = String(secs).padStart(2, '0');
+    }, 1000);
+
+    /* ===================================================
+       ENVÍO DE MENSAJE A WHATSAPP
+    =================================================== */
+    function sendWhatsApp() {
+      const name = document.getElementById('name').value.trim();
+      const passes = document.getElementById('passes').value;
+
+      if (!name) {
+        alert("Por favor escribe tu nombre completo para confirmar.");
+        return;
+      }
+
+      // Mensaje estructurado con negritas de WhatsApp (*)
+      const message = `¡Hola! ✨ Confirmación de asistencia para los *XV de Milin*:\n\n` +
+                      `👤 *Nombre:* ${name}\n` +
+                      `🎟️ *Pases a confirmar:* ${passes}\n\n` +
+                      `¡Ahí nos vemos para celebrar! Dios Te Bendiga  🎉`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+</body>
+</html>
